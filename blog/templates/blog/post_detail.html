@@ -7,7 +7,24 @@
                 {{ post.published_date }}
             </div>
         {% endif %}
+        {% if user.is_authenticated %}
+            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="btn btn-default" onclick="confirmation();"><span class="glyphicon glyphicon-remove"></span></a>
+        {% endif %}
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
     </div>
+    
+    
+<script type="text/javascript">
+function confirmation(){
+    if(confirm("Are you sure you want to delete?")){
+     target_url = "{% url 'post_remove' pk=post.pk %}"
+    location.href = target_url;
+    }
+}
+</script>
+
 {% endblock %}
+
+
