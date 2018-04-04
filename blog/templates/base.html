@@ -9,8 +9,13 @@
     </head>
     <body>
          <div class="page-header">
+            {% if not user.is_authenticated %}
+                <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-circle-arrow-right">Login</span></a>
+                <a href="{% url 'signup' %}" class="top-menu"><span class="glyphicon glyphicon-user">SignUp</span></a>
+            {% endif %}
             {% if user.is_authenticated %}
-                <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+                <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus">New Post</span></a>
+                <a href="{% url 'logout' %}?next=/" class="top-menu"><span class="glyphicon glyphicon-lock">Logout</span></a>
             {% endif %}
             <h1><a href="/">Ben's playground</a></h1>
         </div>

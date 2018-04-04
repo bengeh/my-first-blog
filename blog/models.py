@@ -10,6 +10,9 @@ class Post(models.Model):
             default=timezone.now)
     published_date = models.DateTimeField(
             blank=True, null=True)
+    
+    class Meta:
+        db_table = 'post_details'
 
     def publish(self):
         self.published_date = timezone.now()
